@@ -21,8 +21,13 @@
         </activity>
         <activity android:name=".activity.LoginActivity"
             android:label="@string/login"/>
-        <activity android:name=".activity.ConversationsActivity" />
-        <activity android:name=".activity.UsersActivity" />
+        <activity android:name=".activity.ConversationsActivity"
+            android:label="@string/conversations"/>
+        <activity android:name=".activity.UsersActivity"
+            android:label="@string/people"/>
+        <activity android:name=".activity.RegisterActivity"
+            android:label="@string/register"/>
+
     </application>
 
 </manifest>

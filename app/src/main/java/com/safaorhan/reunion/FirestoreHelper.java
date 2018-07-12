@@ -76,7 +76,7 @@ public class FirestoreHelper {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Log.e(TAG, "onFailute", e);
+                                            Log.e(TAG, "onFailure", e);
                                         }
                                     });
                         } else {

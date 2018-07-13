@@ -17,6 +17,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.model.User;
 
@@ -25,6 +28,7 @@ import org.w3c.dom.Text;
 public class RegisterActivity extends AppCompatActivity{
 
 
+    private static final String TAG = RegisterActivity.class.getSimpleName();
     EditText nameEdit;
     EditText surnameEdit;
     EditText emailEdit;
@@ -89,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity{
                         isTryingToRegister = false;
                     }
                 } );
+
     }
 
     public void LoginToAccount(View view) {

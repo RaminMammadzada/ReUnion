@@ -5,13 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.adapter.ConversationAdapter;
 
@@ -50,7 +50,11 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
 
     @Override
     public void onConversationClick(DocumentReference conversationRef) {
-        
+        String conversationId = FirestoreHelper.getConversationId( conversationRef );
+
+        Intent intent = new Intent( ConversationsActivity.this, MessagesActivity.class );
+        MessagesActivity.setDocumentReference( conversationRef );
+        startActivity( intent );
     }
 
     @Override

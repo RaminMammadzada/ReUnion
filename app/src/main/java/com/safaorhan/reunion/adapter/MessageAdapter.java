@@ -74,9 +74,9 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAda
                     String myEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString().trim();
                     if (user != null) {
                         if (myEmail.equals(user.getEmail())) {
-                            nameTextView.setText("Opponent");
+                            nameTextView.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
                         } else {
-                            nameTextView.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString().trim());
+                            nameTextView.setText("Opponent");
                         }
                     }
                 }

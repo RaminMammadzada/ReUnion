@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -18,7 +19,7 @@ import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.model.Message;
 import com.safaorhan.reunion.model.User;
 
-public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAdapter.ChatHolder> {
+public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAdapter.MessageHolder> {
 
     private MessageAdapter(@NonNull FirestoreRecyclerOptions<Message> options) {
         super(options);
@@ -40,24 +41,24 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAda
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ChatHolder holder, int position, @NonNull Message message) {
+    protected void onBindViewHolder(@NonNull MessageHolder holder, int position, @NonNull Message message) {
         holder.bind(message);
     }
 
     @NonNull
     @Override
-    public ChatHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MessageHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_message, parent, false);
-        return new ChatHolder(itemView);
+        return new MessageHolder(itemView);
     }
 
-    class ChatHolder extends RecyclerView.ViewHolder {
+    class MessageHolder extends RecyclerView.ViewHolder {
 
         View itemView;
         TextView nameTextView;
         TextView messageTextView;
 
-        ChatHolder(View itemView) {
+        MessageHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
             nameTextView = itemView.findViewById(R.id.name_text_view);
@@ -70,12 +71,12 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAda
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
                     User user = documentSnapshot.toObject(User.class);
-                    String myEmail = "raminmammadzadaiu@gmail.com";
+                    String myEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString().trim();
                     if (user != null) {
                         if (myEmail.equals(user.getEmail())) {
                             nameTextView.setText("Opponent");
                         } else {
-                            nameTextView.setText(user.getName());
+                            nameTextView.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString().trim());
                         }
                     }
                 }

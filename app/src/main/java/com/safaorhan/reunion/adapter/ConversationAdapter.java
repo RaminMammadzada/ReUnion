@@ -34,7 +34,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
         if (conversationClickListener == null) {
             conversationClickListener = new ConversationClickListener() {
                 @Override
-                public void onConversationClick(DocumentReference documentReference) {
+                public void onConversationClick(DocumentReference documentReference, String opponentName) {
                     Log.e(TAG, "You need to call setConversationClickListener() to set the click listener of ConversationAdapter");
                 }
             };
@@ -94,7 +94,7 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getConversationClickListener().onConversationClick(FirestoreHelper.getConversationRef(conversation));
+                    getConversationClickListener().onConversationClick(FirestoreHelper.getConversationRef(conversation), opponentNameText.getText().toString());
                 }
             });
 
@@ -124,6 +124,6 @@ public class ConversationAdapter extends FirestoreRecyclerAdapter<Conversation, 
     }
 
     public interface ConversationClickListener {
-        void onConversationClick(DocumentReference conversationRef);
+        void onConversationClick(DocumentReference conversationRef, String opponentName);
     }
 }

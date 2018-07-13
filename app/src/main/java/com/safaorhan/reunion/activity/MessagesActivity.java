@@ -25,6 +25,7 @@ public class MessagesActivity extends AppCompatActivity {
     EditText messagedEditText;
     ImageView sendButton;
     MessageAdapter messageAdapter;
+    String opponentName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +34,10 @@ public class MessagesActivity extends AppCompatActivity {
 
         messagedEditText = findViewById(R.id.message_edit_text);
         sendButton = findViewById(R.id.send_button);
+
         messageAdapter = MessageAdapter.get(documentReference);
+        opponentName = getIntent().getStringExtra("opponent");
+        setTitle( opponentName.toString() );
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -43,7 +47,7 @@ public class MessagesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirestoreHelper.sendMessage(messagedEditText.getText().toString(), documentReference);
-                messagedEditText.setText("");
+                messagedEditText.setText(" ");
             }
         });
     }

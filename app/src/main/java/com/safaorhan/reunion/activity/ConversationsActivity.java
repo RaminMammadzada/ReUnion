@@ -49,11 +49,10 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
     }
 
     @Override
-    public void onConversationClick(DocumentReference conversationRef) {
-        String conversationId = FirestoreHelper.getConversationId( conversationRef );
-
+    public void onConversationClick(DocumentReference conversationRef, String opponentName) {
         Intent intent = new Intent( ConversationsActivity.this, MessagesActivity.class );
         MessagesActivity.setDocumentReference( conversationRef );
+        intent.putExtra( "opponent", opponentName );
         startActivity( intent );
     }
 

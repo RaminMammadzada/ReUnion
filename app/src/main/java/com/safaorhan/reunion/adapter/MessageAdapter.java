@@ -66,7 +66,6 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAda
         }
 
         void bind(final Message message) {
-
             message.getFrom().get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -74,14 +73,17 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAda
                     String myEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail().toString().trim();
                     if (user != null) {
                         if (myEmail.equals(user.getEmail())) {
-                            nameTextView.setText("Opponent");
+                            nameTextView.setText("me");
                         } else {
-                            nameTextView.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName().toString().trim());
+                            User opponent = documentSnapshot.toObject(User.class);
+                            nameTextView.setText(opponent.getName());
                         }
                     }
+
+
+
                 }
             });
-
             messageTextView.setText(message.getText());
         }
     }

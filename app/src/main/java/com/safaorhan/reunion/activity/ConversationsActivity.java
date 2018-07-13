@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,8 +52,8 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
     public void onConversationClick(DocumentReference conversationRef) {
         String conversationId = FirestoreHelper.getConversationId( conversationRef );
 
-        Intent intent = new Intent( ConversationsActivity.this, MessagingActivity.class );
-        MessagingActivity.setDocumentReference( conversationRef );
+        Intent intent = new Intent( ConversationsActivity.this, MessagesActivity.class );
+        MessagesActivity.setDocumentReference( conversationRef );
         startActivity( intent );
     }
 

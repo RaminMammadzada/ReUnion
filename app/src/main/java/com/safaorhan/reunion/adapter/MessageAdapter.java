@@ -74,6 +74,7 @@ public class MessageAdapter extends FirestoreRecyclerAdapter<Message, MessageAda
                     if (user != null) {
                         if (myEmail.equals(user.getEmail())) {
                             nameTextView.setText("me");
+
                         } else {
                             User opponent = documentSnapshot.toObject(User.class);
                             nameTextView.setText(opponent.getName());

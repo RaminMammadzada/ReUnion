@@ -4,6 +4,14 @@
     <string name="login">Log In</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+  
     <string name="user">Username</string>
     <string name="mail">Email</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="register">Register</string>
+    <string name="people">People</string>
+    <string name="conversations">Conversations</string>
+    <string name="messages">Messages</string>
+
 </resources>

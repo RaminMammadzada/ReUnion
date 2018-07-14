@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.safaorhan.reunion.FirestoreHelper;
 import com.safaorhan.reunion.R;
 import com.safaorhan.reunion.adapter.ConversationAdapter;
 
@@ -47,8 +49,11 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
     }
 
     @Override
-    public void onConversationClick(DocumentReference conversationRef) {
-        
+    public void onConversationClick(DocumentReference conversationRef, String opponentName) {
+        Intent intent = new Intent( ConversationsActivity.this, MessagesActivity.class );
+        MessagesActivity.setDocumentReference( conversationRef );
+        intent.putExtra( "opponent", opponentName );
+        startActivity( intent );
     }
 
     @Override
@@ -65,6 +70,11 @@ public class ConversationsActivity extends AppCompatActivity implements Conversa
             case R.id.menu_people:
                 Intent intent = new Intent(this, UsersActivity.class);
                 startActivity(intent);
+                return true;
+            case R.id.menu_signout:
+                FirebaseAuth.getInstance().signOut();
+                Intent intent1 = new Intent( this, LoginActivity.class );
+                startActivity( intent1 );
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

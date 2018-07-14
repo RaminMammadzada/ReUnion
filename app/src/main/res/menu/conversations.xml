@@ -6,4 +6,12 @@
         android:title="@string/menu_people"
         android:icon="@drawable/ic_people"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_signout"
+        android:icon="@drawable/ic_exit"
+        app:showAsAction="ifRoom"
+        android:title="Signout" />
+
+
 </menu>

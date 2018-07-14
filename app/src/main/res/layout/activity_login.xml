@@ -57,6 +57,30 @@
             android:fontFamily="sans-serif-medium"
             android:textStyle="normal"
             android:text="@string/login" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Don't you have an account ?" />
+
+            <TextView
+                android:id="@+id/create_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#0000FF"
+                android:text=" Create one!"
+                android:gravity="center"
+                android:onClick="CreateAccount"/>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>
